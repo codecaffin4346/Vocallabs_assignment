@@ -92,20 +92,20 @@ Build a proprietary voice orchestration engine optimized for Indian network cond
 
 ```mermaid
 sequenceDiagram
-    participant User as Customer (Mobile Network)
+    participant User as "Customer (Mobile Network)"
     participant Orchestrator as VocalLabs Co-Processor
     participant Cache as Edge Audio Cache
-    participant LLM as Speculative LLM (Bangalore Server)
+    participant LLM as "Speculative LLM (Bangalore Server)"
     
-    User->>Orchestrator: "Haan, main payment kal..." (Speaking)
+    User->>Orchestrator: "Haan, main payment kal... (Speaking)"
     Note over Orchestrator: Real-time streaming ASR
     Orchestrator->>LLM: Stream intermediate ASR tokens
     Note over LLM: Speculative response generation starts
-    User->>Orchestrator: "...kar dunga." (Turn Ended)
-    Orchestrator->>Cache: Trigger filler "Accha..." (Plays instantly, latency ~100ms)
-    Cache-->>User: Plays "Accha, kal..."
-    LLM->>Orchestrator: Deliver final text tokens
-    Orchestrator->>User: Play remaining synthesized TTS (Seamlessly cross-faded)
+    User->>Orchestrator: "...kar dunga. (Turn Ended)"
+    Orchestrator->>Cache: "Trigger filler 'Accha...' (Plays instantly, latency ~100ms)"
+    Cache-->>User: "Plays 'Accha, kal...'"
+    LLM->>Orchestrator: "Deliver final text tokens"
+    Orchestrator->>User: "Play remaining synthesized TTS (Seamlessly cross-faded)"
 ```
 
 #### Key Capabilities:
@@ -132,13 +132,13 @@ In a traditional visual node-based script builder, handling this requires:
 
 ```mermaid
 graph LR
-    subgraph Traditional Node Script (Brittle)
+    subgraph "Traditional Node Script (Brittle)"
         N1[Ask Email] --> N2[Validate Email]
         N2 --> N3[Ask DOB]
         N2 -->|User Interrupts: 'What is fee?'| N_Error[Loop / Fail]
     end
 
-    subgraph State-Machine Guardrail (Resilient)
+    subgraph "State-Machine Guardrail (Resilient)"
         State_Verify[State: Verification] -->|Goal Checklist: Email & DOB| State_Balance[State: Explain Balance]
         State_Verify -->|User Interrupts: 'What is fee?'| LLM_Handles[LLM answers out-of-order fee question]
         LLM_Handles -->|Validator checks goals| State_Verify
@@ -178,7 +178,7 @@ Create a lightweight, embeddable agent console that launches automatically on th
 graph LR
     Customer[Customer] -->|Fails Verification / Frustrated| VoiceAI[VocalLabs AI Agent]
     VoiceAI -->|SIP Transfer + Session ID| CallCenterSIP[Call Center Dialer]
-    VoiceAI -->|Push Conversation Data| CopilotDB[(VocalLabs Cloud)]
+    VoiceAI -->|Push Conversation Data| CopilotDB[("VocalLabs Cloud")]
     CallCenterSIP -->|Route Call| HumanAgent[Human Agent Desktop]
     HumanAgent -->|Popup Agent Console| CopilotUI[VocalLabs Copilot UI]
     CopilotDB -->|Stream Live Transcript & Summaries| CopilotUI
